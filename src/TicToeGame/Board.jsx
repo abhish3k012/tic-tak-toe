@@ -1,8 +1,9 @@
 import React,{useState} from "react";
 import Square from "./Square";
 const Board=()=>{
-    const[state,setState]=useState(Array(9).fill(null));
+    const[state,setState]=useState(["","","","","","","","",""]);
     const[Xturn,setXturn]=useState(true)
+    const[player,setplayer]=useState("x")
     function checkwin(){
         const data=[
             [0,1,2],
@@ -16,7 +17,7 @@ const Board=()=>{
         ];
         for(let i of data){
             const [a,b,c]=i;
-            if( state[a]===state[b] && state[a]===state[c]){
+            if(  state[a]===state[b] && state[a]===state[c]){
             console.log("won the match")
             return state[a]
         }
@@ -27,18 +28,31 @@ const Board=()=>{
     const winner=checkwin();
    
     function handleClick(index){
-    // if(state[index]!==null){
-    //     return
-    // }     
+    if(state[index]!==null){
+        return
+    }     
      const copyState=[...state]
+     console.log("dfdfg",copyState)
      copyState[index]=Xturn ? "x":"o";
      setState(copyState)
      setXturn(!Xturn)
-
-
-    }
+    // state.map((val,idx)=>{
+    // alert(index)
+    //     if(idx===index && val===""){
+    //         return player
+    //     }
+    //     return val
+    // })
+    //  if (player==="x"){
+    //     setplayer("o")
+    //  }else{
+    //     setplayer("x")
+    //  }
+     
+     };
     function handlereset(){
-setState(Array(9).fill(null))
+//setState(Array(9).fill(null))
+setState(["","","","","","","","",""])
 
     }
     //const winner=checkwin();
